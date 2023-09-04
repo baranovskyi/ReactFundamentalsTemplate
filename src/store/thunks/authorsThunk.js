@@ -1,7 +1,3 @@
+export const createAuthorThunk = () => {};
 
-
-export const createAuthorThunk = () => {
-};
-
-export const getAuthorsThunk = () => {
-};
+export const getAuthorsThunk = () => {};

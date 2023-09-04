@@ -2,8 +2,7 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-export const Courses = ({coursesList, authorsList, handleShowCourse}) => {
-
+export const Courses = ({ coursesList, authorsList, handleShowCourse }) => {
 	// write your code here
 
 	// for EmptyCourseListComponent container use data-testid="emptyContainer" attribute
@@ -14,7 +13,6 @@ export const Courses = ({coursesList, authorsList, handleShowCourse}) => {
 			<div className={styles.panel}>
 				// reuse Button component for 'Add new course' button
 			</div>
-			
 			// use '.map' to render all courses. Use CourseCard component
 		</>
 	);

@@ -1,4 +1,4 @@
-import { getCourseDuration } from './getCourseDuration';
 import { formatCreationDate } from './formatCreationDate';
+import { getCourseDuration } from './getCourseDuration';
 
 export { getCourseDuration, formatCreationDate };

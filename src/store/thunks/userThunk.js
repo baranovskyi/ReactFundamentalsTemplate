@@ -1,9 +1,3 @@
+export const getUserThunk = () => {};
 
-
-export const getUserThunk = () => {
-
-};
-
-export const logoutThunk = () => {
-
-};
+export const logoutThunk = () => {};

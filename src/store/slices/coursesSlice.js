@@ -6,10 +6,10 @@ export const coursesSlice = createSlice({
 	name: 'courses',
 	initialState,
 	reducers: {
-		// setCourses: 
-		// saveCourse: 
-		// deleteCourse: 
-		// updateCourse: 
+		// setCourses:
+		// saveCourse:
+		// deleteCourse:
+		// updateCourse:
 	},
 });
 
