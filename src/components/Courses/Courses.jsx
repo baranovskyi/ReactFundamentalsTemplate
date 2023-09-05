@@ -20,7 +20,7 @@ export const Courses = ({ coursesList, authorsList, handleShowCourse }) => {
 					<div className={styles.wrapper}>
 						<h1 className={styles.title}>Your list is empty</h1>
 						<p>Please use 'Add New Course' button to add your first course</p>
-						<div className={styles.button_wrapper}>
+						<div className={styles.empty_list_button_wrapper}>
 							<Button buttonText='Add new course' data-testid='addCourse' />
 						</div>
 					</div>
@@ -31,6 +31,9 @@ export const Courses = ({ coursesList, authorsList, handleShowCourse }) => {
 	}
 	return (
 		<>
+			<div className={styles.courses_button_wrapper}>
+				<Button buttonText='Add new' data-testid='addCourse' />
+			</div>
 			{mockedCoursesList.map((course) => (
 				<CourseCard course={course} key={course.id} />
 			))}

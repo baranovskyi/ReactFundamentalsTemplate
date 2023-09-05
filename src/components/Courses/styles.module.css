@@ -12,11 +12,22 @@
   align-items: center;
 }
 
-.button_wrapper {
+.empty_list_button_wrapper {
   width: fit-content;
   margin-top: 30px;
 }
 
+.courses_button_wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
 .title {
   text-transform: capitalize;
+}
+
+.button {
+  float: right;
+  margin-bottom: 20px;
 }
