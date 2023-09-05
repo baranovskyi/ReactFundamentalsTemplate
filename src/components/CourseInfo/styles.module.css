@@ -1,6 +1,14 @@
 .courseInfo {
   display: flex;
   gap: 50px;
+  padding: 10px 20px;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.title {
+  background-color: #fce81c;
+  border-radius: 3px;
 }
 
 .authorsList {
@@ -14,4 +22,8 @@
 
 p {
   padding-bottom: 0;
+}
+
+.button {
+  float: right;
 }

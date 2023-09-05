@@ -1,0 +1,43 @@
+{
+    "root": true,
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": ["react-app", "prettier"],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "prettier"
+    ],
+    "rules": {
+        "prettier/prettier": [
+            "error", {
+                "printWidth": 80,
+                "trailingComma": "es5",
+                "semi": true,
+                "jsxSingleQuote": true,
+                "singleQuote": true,
+                "useTabs": true,
+                "endOfLine": "auto",
+                "max-len": ["error", { "code": 80 }],
+                "importOrder": [
+                    "^react(.*)$",
+                    "<THIRD_PARTY_MODULES>",
+                    "./types",
+                    "^[.](?!.*.(scss|css)$).*$",
+                    "(.*).(scss|css)$"
+                ],
+                "importOrderSeparation": true,
+                "importOrderSortSpecifiers": true
+            }
+        ],
+        "no-duplicate-imports": "error"
+    }
+}

@@ -1,28 +1,33 @@
 .cardContainer {
   display: flex;
   padding: 8px 16px;
-  border: 1px solid black;
   justify-content: space-between;
+  align-items: baseline;
   gap: 16px;
+  margin-bottom: 15px;
+  box-shadow: 0px 0px 3px 1px #333e48;
 }
 
 .cardText {
-  width: 70%;
+  width: 60%;
 }
 
 .cardDetails {
-  width: 30%;
+  width: 40%;
 }
+
 
 .cardDetails > p {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  margin: 0;
 }
 
 .buttonGroup {
   display: flex;
   gap: 10px;
+  margin-top: 10px;
 }
 
 .buttonGroup {
