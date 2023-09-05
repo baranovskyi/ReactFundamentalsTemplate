@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Button, Input } from '../../common';
+
 import styles from './styles.module.css';
 
 export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
@@ -8,9 +10,12 @@ export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
 	return (
 		<form onSubmit={handleSubmit}>
 			<div>
-				// reuse Input component for title field with data-testid="titleInput"
-				// reuse Button component for 'Save course' button with
-				data-testid="createCourseButton"
+				<Input
+					placeholderText='Input text'
+					labelText='title'
+					data-testid='titleInput'
+				/>
+				<Button buttonText='Save course' data-testid='createCourseButton' />
 			</div>
 
 			<label>
@@ -20,8 +25,12 @@ export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
 
 			<div className={styles.infoWrapper}>
 				<div>
-					// use CreateAuthor component // reuse Input component with
-					data-testid='durationInput' for duration field
+					// use CreateAuthor component
+					<Input
+						placeholderText='Input text'
+						labelText='Duration'
+						data-testid='durationInput'
+					/>
 					<p>Duration: </p>
 				</div>
 

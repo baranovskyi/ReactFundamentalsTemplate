@@ -1,4 +1,12 @@
+
+
 .container {
-    max-width: 800px;
+    height: calc(100vh - 120px);
+    padding: 20px;
+    background-color: #f7f7f7;
+}
+.wrapper {
+    height: 100%;
+    max-width: 80%;
     margin: 0 auto;
 }

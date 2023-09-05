@@ -33,7 +33,7 @@
     "eslint": "eslint --ext .js --ext .jsx src",
     "eslint:fix": "eslint --fix --ext .js --ext .jsx src"
   },
-  "eslintConfig": {
+   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"

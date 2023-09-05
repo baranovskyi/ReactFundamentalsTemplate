@@ -1,45 +1,46 @@
 import React from 'react';
 
+import { Button } from '../../common';
 import { formatCreationDate, getCourseDuration } from '../../helpers';
 
 import styles from './styles.module.css';
 
-export const CourseInfo = ({
-	coursesList,
-	authorsList,
-	onBack,
-	showCourseId,
-}) => {
+export const CourseInfo = ({ course, onBack, showCourseId }) => {
 	// write your code here
 
 	return (
 		<div data-testid='courseInfo'>
-			// Module 1: reuse Button component for 'onBack' functionality // Module
-			2: use 'react-router-dom' 'Link' component for button 'Back'
-			<h1>Course title</h1>
+			// Module 2: use 'react-router-dom' 'Link' component for button 'Back'
+			<h1>{course.title}</h1>
 			<div className={styles.courseInfo}>
-				<p className={styles.description}>{description}</p>
+				<p className={styles.description}>
+					<b className={styles.title}>Description</b>
+					<p>{course.description}</p>
+				</p>
 				<div>
 					<p>
 						<b>ID: </b>
-						id
+						{course.id}
 					</p>
-					<p>
+					<p className={styles.description}>
 						<b>Duration: </b>
-						duration
+						{getCourseDuration(course.duration)}
 					</p>
 					<p>
 						<b>Created: </b>
-						creation date
+						{formatCreationDate(course.creationDate)}
 					</p>
-					<div>
+					<div className={styles.authorsList}>
 						<b>Authors</b>
 						<ul className={styles.authorsList}>
-							//use '.map' to render authors list with 'li' tag
+							{course.authors.map((author) => (
+								<li>{author}</li>
+							))}
 						</ul>
 					</div>
 				</div>
 			</div>
+			<Button className={styles.button} buttonText='Back' />
 		</div>
 	);
 };
