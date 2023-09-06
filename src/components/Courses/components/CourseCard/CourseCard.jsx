@@ -6,7 +6,11 @@ import { formatCreationDate, getCourseDuration } from '../../../../helpers';
 import styles from './styles.module.css';
 
 export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
-	// write your code here
+	const authorsNames = course.authors.map((id) => {
+		const author = authorsList.find((author) => author.id === id);
+
+		return author.name;
+	});
 
 	return (
 		<div className={styles.cardContainer} data-testid='courseCard'>
@@ -17,7 +21,7 @@ export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
 			<div className={styles.cardDetails}>
 				<p>
 					<b>Authors: </b>
-					{course.authors.join(', ')}
+					{authorsNames.join(', ')}
 				</p>
 				<p>
 					<b>Duration: </b>

@@ -5,8 +5,12 @@ import { formatCreationDate, getCourseDuration } from '../../helpers';
 
 import styles from './styles.module.css';
 
-export const CourseInfo = ({ course, onBack, showCourseId }) => {
-	// write your code here
+export const CourseInfo = ({ course, authorsList, onBack, showCourseId }) => {
+	const authorsNames = course.authors.map((id) => {
+		const author = authorsList.find((author) => author.id === id);
+
+		return author.name;
+	});
 
 	return (
 		<div data-testid='courseInfo'>
@@ -33,7 +37,7 @@ export const CourseInfo = ({ course, onBack, showCourseId }) => {
 					<div className={styles.authorsList}>
 						<b>Authors</b>
 						<ul className={styles.authorsList}>
-							{course.authors.map((author) => (
+							{authorsNames.map((author) => (
 								<li>{author}</li>
 							))}
 						</ul>

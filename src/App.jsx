@@ -3,6 +3,7 @@ import React from 'react';
 import { Courses, Header } from './components';
 
 import styles from './App.module.css';
+import { mockedAuthorsList, mockedCoursesList } from './constants';
 
 // use mocked data till API implementation
 // import { mockedAuthorsList, mockedCoursesList } from './constants';
@@ -17,7 +18,10 @@ function App() {
 			<Header />
 			<div className={styles.container}>
 				<div className={styles.wrapper}>
-					<Courses />
+					<Courses
+						coursesList={mockedCoursesList}
+						authorsList={mockedAuthorsList}
+					/>
 				</div>
 			</div>
 		</>
