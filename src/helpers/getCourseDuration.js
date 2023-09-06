@@ -3,8 +3,7 @@ export const getCourseDuration = (duration) => {
 	const minutes = duration % 60;
 	const formattedHours = String(hours).padStart(2, '0');
 	const formattedMinutes = String(minutes).padStart(2, '0');
-	const stringEnding =
-		`${formattedHours}:${formattedMinutes}` === '01:00' ? 'hour' : 'hours';
+	const stringEnding = formattedHours === '01' ? 'hour' : 'hours';
 
 	return `${formattedHours}:${formattedMinutes} ${stringEnding}`;
 };
