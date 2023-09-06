@@ -5,7 +5,7 @@ import { formatCreationDate, getCourseDuration } from '../../../../helpers';
 
 import styles from './styles.module.css';
 
-export const CourseCard = ({ course, handleShowCourse }) => {
+export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
 	// write your code here
 
 	return (

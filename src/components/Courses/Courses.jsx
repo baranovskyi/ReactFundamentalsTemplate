@@ -5,27 +5,14 @@ import { mockedCoursesList } from '../../constants';
 import { CourseCard } from './components';
 
 import styles from './styles.module.css';
+import { EmptyCourseList } from './components/EmptyCourseList';
 
 export const Courses = ({ coursesList, authorsList, handleShowCourse }) => {
 	const isListEmpty = !mockedCoursesList.length;
 	// write your code here
 
-	// for EmptyCourseListComponent container use data-testid="emptyContainer" attribute
-	// for button in EmptyCourseListComponent add data-testid="addCourse" attribute
 	if (isListEmpty) {
-		return (
-			<>
-				<div className={styles.panel}>
-					<div className={styles.wrapper}>
-						<h1 className={styles.title}>Your list is empty</h1>
-						<p>Please use 'Add New Course' button to add your first course</p>
-						<div className={styles.empty_list_button_wrapper}>
-							<Button buttonText='Add new course' data-testid='addCourse' />
-						</div>
-					</div>
-				</div>
-			</>
-		);
+		return <EmptyCourseList data-testid='emptyContainer' />;
 	} else {
 	}
 	return (
