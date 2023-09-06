@@ -3,7 +3,7 @@
 // import styles from './styles.module.css';
 
 // export const Registration = () => {
-	
+
 // 	// write your code here
 
 // 	return (
