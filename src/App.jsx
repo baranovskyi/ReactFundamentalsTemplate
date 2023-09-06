@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Courses, Header } from './components';
+import { CourseInfo, Courses, Header } from './components';
 
 import styles from './App.module.css';
 import { mockedAuthorsList, mockedCoursesList } from './constants';
@@ -20,6 +20,11 @@ function App() {
 				<div className={styles.wrapper}>
 					<Courses
 						coursesList={mockedCoursesList}
+						authorsList={mockedAuthorsList}
+					/>
+
+					<CourseInfo
+						course={mockedCoursesList[0]}
 						authorsList={mockedAuthorsList}
 					/>
 				</div>

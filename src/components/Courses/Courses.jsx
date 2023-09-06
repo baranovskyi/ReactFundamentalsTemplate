@@ -12,17 +12,25 @@ export const Courses = ({ coursesList, authorsList, handleShowCourse }) => {
 	// write your code here
 
 	if (isListEmpty) {
-		return <EmptyCourseList data-testid='emptyContainer' />;
-	} else {
-	}
-	return (
-		<>
-			<div className={styles.courses_button_wrapper}>
-				<Button buttonText='Add new' data-testid='addCourse' />
+		return (
+			<div className={styles.empty_list_wrapper} data-testid='emptyContainer'>
+				<EmptyCourseList />
 			</div>
-			{coursesList.map((course) => (
-				<CourseCard authorsList={authorsList} course={course} key={course.id} />
-			))}
-		</>
-	);
+		);
+	} else {
+		return (
+			<>
+				<div className={styles.courses_button_wrapper}>
+					<Button buttonText='Add new' data-testid='addCourse' />
+				</div>
+				{coursesList.map((course) => (
+					<CourseCard
+						authorsList={authorsList}
+						course={course}
+						key={course.id}
+					/>
+				))}
+			</>
+		);
+	}
 };

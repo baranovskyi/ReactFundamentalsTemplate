@@ -1,6 +1,8 @@
-.empty_list_button_wrapper {
-  width: fit-content;
-  margin-top: 30px;
+.empty_list_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .courses_button_wrapper {
