@@ -40,7 +40,11 @@ export const CourseInfo = ({ course, onBack, showCourseId }) => {
 					</div>
 				</div>
 			</div>
-			<Button className={styles.button} buttonText='Back' />
+			<Button
+				className={styles.button}
+				buttonText='Back'
+				handleClick={onBack}
+			/>
 		</div>
 	);
 };
