@@ -21,7 +21,7 @@ export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
 				</p>
 				<p>
 					<b>Duration: </b>
-					<span>{getCourseDuration(course.duration)} hours</span>
+					<span>{getCourseDuration(course.duration)}</span>
 				</p>
 				<p>
 					<b>Created: </b>
