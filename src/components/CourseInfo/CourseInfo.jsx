@@ -10,7 +10,7 @@ export const CourseInfo = ({ course, onBack, showCourseId }) => {
 
 	return (
 		<div data-testid='courseInfo'>
-			// Module 2: use 'react-router-dom' 'Link' component for button 'Back'
+			{/* Module 2: use 'react-router-dom' 'Link' component for button 'Back' */}
 			<h1>{course.title}</h1>
 			<div className={styles.courseInfo}>
 				<p className={styles.description}>

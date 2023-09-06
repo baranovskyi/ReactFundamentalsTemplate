@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Button } from '../../common';
 import { mockedCoursesList } from '../../constants';
-import { CourseInfo } from '../CourseInfo';
 import { CourseCard } from './components';
 
 import styles from './styles.module.css';
