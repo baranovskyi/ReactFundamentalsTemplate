@@ -32,7 +32,10 @@ export const CourseCard = ({ course, handleShowCourse, authorsList }) => {
 					<span>{formatCreationDate(course.creationDate)}</span>
 				</p>
 				<div className={styles.buttonGroup}>
-					<Button buttonText='Show course' />
+					<Button
+						buttonText='Show course'
+						handleClick={() => handleShowCourse(course.id)}
+					/>
 					<Button buttonText='Delete' data-testid='deleteCourse' />
 					<Button buttonText='Update' data-testid='updateCourse' />
 				</div>

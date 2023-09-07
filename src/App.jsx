@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { CourseInfo, Courses, Header } from './components';
 
@@ -11,22 +11,35 @@ import { mockedAuthorsList, mockedCoursesList } from './constants';
 // Task 2 and 3 - wrap your App with redux Provider and BrowserRouter in src/index.js
 
 function App() {
-	// write your code here
+	const [currentCourseId, setCurrentCourseId] = useState(null);
+
+	const handleShowCourse = (courseId) => {
+		setCurrentCourseId(courseId);
+	};
+
+	const handleBackButtonClick = () => {
+		setCurrentCourseId(null);
+	};
 
 	return (
 		<>
 			<Header />
 			<div className={styles.container}>
 				<div className={styles.wrapper}>
-					<Courses
-						coursesList={mockedCoursesList}
-						authorsList={mockedAuthorsList}
-					/>
-
-					<CourseInfo
-						course={mockedCoursesList[0]}
-						authorsList={mockedAuthorsList}
-					/>
+					{!currentCourseId ? (
+						<Courses
+							coursesList={mockedCoursesList}
+							authorsList={mockedAuthorsList}
+							handleShowCourse={handleShowCourse}
+						/>
+					) : (
+						<CourseInfo
+							coursesList={mockedCoursesList}
+							authorsList={mockedAuthorsList}
+							showCourseId={currentCourseId}
+							onBack={handleBackButtonClick}
+						/>
+					)}
 				</div>
 			</div>
 		</>

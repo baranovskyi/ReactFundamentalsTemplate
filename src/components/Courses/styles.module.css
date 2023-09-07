@@ -1,9 +1,3 @@
-.empty_list_wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
 
 .courses_button_wrapper {
   display: flex;
@@ -11,7 +5,3 @@
   margin-bottom: 20px;
 }
 
-.button {
-  float: right;
-  margin-bottom: 20px;
-}
