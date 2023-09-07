@@ -5,8 +5,16 @@ import { formatCreationDate, getCourseDuration } from '../../helpers';
 
 import styles from './styles.module.css';
 
-export const CourseInfo = ({ course, onBack, showCourseId }) => {
-	// write your code here
+export const CourseInfo = ({
+	coursesList,
+	authorsList,
+	onBack,
+	showCourseId,
+}) => {
+	const course = coursesList.find(({ id }) => id === showCourseId);
+	const authors = course.authors.map((id) => {
+		return authorsList.find((author) => author.id === id);
+	});
 
 	return (
 		<div data-testid='courseInfo'>
@@ -33,14 +41,16 @@ export const CourseInfo = ({ course, onBack, showCourseId }) => {
 					<div className={styles.authorsList}>
 						<b>Authors</b>
 						<ul className={styles.authorsList}>
-							{course.authors.map((author) => (
-								<li>{author}</li>
+							{authors.map((author) => (
+								<li key={author.id}>{author.name}</li>
 							))}
 						</ul>
 					</div>
 				</div>
 			</div>
-			<Button className={styles.button} buttonText='Back' />
+			<div className={styles.button_wrapper}>
+				<Button buttonText='Back' handleClick={onBack} />
+			</div>
 		</div>
 	);
 };

@@ -24,6 +24,8 @@ p {
   padding-bottom: 0;
 }
 
-.button {
-  float: right;
+.button_wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
 }

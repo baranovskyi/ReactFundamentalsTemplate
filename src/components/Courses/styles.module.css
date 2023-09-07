@@ -1,21 +1,3 @@
-.panel {
-  display: flex;
-  height: 100%;
-  margin-bottom: 16px;
-  justify-content: center;
-  align-items: center;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.empty_list_button_wrapper {
-  width: fit-content;
-  margin-top: 30px;
-}
 
 .courses_button_wrapper {
   display: flex;
@@ -23,11 +5,3 @@
   margin-bottom: 20px;
 }
 
-.title {
-  text-transform: capitalize;
-}
-
-.button {
-  float: right;
-  margin-bottom: 20px;
-}
