@@ -52,11 +52,11 @@ export const Registration = () => {
 					labelText='Password'
 					onChange={(event) => setPassword(event.target.value)}
 				/>
-				<Button buttonText='Login' data-testid='register_button' />
+				<Button buttonText='Register' data-testid='register_button' />
 			</form>
 			<p>
 				If you have an account you can&nbsp;
-				<Link to='/login'>Register</Link>
+				<Link to='/login'>Login</Link>
 			</p>
 		</div>
 	);

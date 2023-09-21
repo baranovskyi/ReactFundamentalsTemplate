@@ -28,13 +28,15 @@ export const Login = () => {
 			email,
 		};
 
-		await login(payload).then((res) => {
-			if (res.successful) {
-				localStorage.setItem('token', res.result);
-				localStorage.setItem('userName', res.user.name);
-				navigate('courses', { replace: true });
-			}
-		});
+		if (email && password) {
+			await login(payload).then((res) => {
+				if (res.successful) {
+					localStorage.setItem('token', res.result);
+					localStorage.setItem('userName', res.user.name);
+					navigate('courses', { replace: true });
+				}
+			});
+		}
 	};
 
 	return (
