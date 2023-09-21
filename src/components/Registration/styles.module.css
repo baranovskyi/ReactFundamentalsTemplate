@@ -10,3 +10,8 @@
   margin-top: 20px;
   width: 100%;
 }
+
+.error_message {
+  margin: 0;
+  color: red;
+}

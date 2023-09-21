@@ -45,7 +45,7 @@ export const CourseInfo = ({ coursesList, authorsList }) => {
 				</div>
 			</div>
 			<div className={styles.button_wrapper}>
-				<Link to='courses'>
+				<Link to='/courses'>
 					<Button buttonText='Back' />
 				</Link>
 			</div>

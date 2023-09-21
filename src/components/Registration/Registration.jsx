@@ -11,9 +11,13 @@ export const Registration = () => {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [nameError, setNameError] = useState(false);
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
+		if (!name.trim().length) {
+			setNameError(true);
+		}
 
 		const payload = {
 			name,
@@ -21,8 +25,10 @@ export const Registration = () => {
 			email,
 		};
 
-		await createUser(payload).then(() => {
-			navigate('login', { replace: true });
+		await createUser(payload).then((res) => {
+			if (res.successful) {
+				navigate('login', { replace: true });
+			}
 		});
 	};
 
@@ -35,6 +41,7 @@ export const Registration = () => {
 					labelText='Name'
 					onChange={(event) => setName(event.target.value)}
 				/>
+				{nameError && <p className={styles.error_message}>Name is required</p>}
 				<Input
 					placeholderText='Input text'
 					labelText='Email'
