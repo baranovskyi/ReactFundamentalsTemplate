@@ -46,7 +46,11 @@ export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
 					paragraph if there are no authors in the course*/}
 				</div>
 			</div>
-			<Button buttonText='Save course' data-testid='createCourseButton' />
+			<Button
+				buttonText='Save course'
+				data-testid='createCourseButton'
+				handleClick={createCourse}
+			/>
 		</form>
 	);
 };
