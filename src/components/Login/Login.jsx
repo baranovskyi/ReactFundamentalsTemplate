@@ -9,9 +9,19 @@ export const Login = () => {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [emailError, setEmailError] = useState(false);
+	const [passwordError, setPasswordError] = useState(false);
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
+
+		if (!email.trim().length) {
+			setEmailError(true);
+		}
+
+		if (!password.trim().length) {
+			setPasswordError(true);
+		}
 
 		const payload = {
 			password,
@@ -19,9 +29,11 @@ export const Login = () => {
 		};
 
 		await login(payload).then((res) => {
-			localStorage.setItem('token', res.result);
-			localStorage.setItem('userName', res.user.name);
-			navigate('courses');
+			if (res.successful) {
+				localStorage.setItem('token', res.result);
+				localStorage.setItem('userName', res.user.name);
+				navigate('courses', { replace: true });
+			}
 		});
 	};
 
@@ -35,6 +47,9 @@ export const Login = () => {
 						labelText='Email'
 						onChange={(event) => setEmail(event.target.value)}
 					/>
+					{emailError && (
+						<p className={styles.error_message}>Email is required</p>
+					)}
 				</div>
 				<div className={styles.form_control}>
 					<Input
@@ -42,6 +57,9 @@ export const Login = () => {
 						labelText='Password'
 						onChange={(event) => setPassword(event.target.value)}
 					/>
+					{passwordError && (
+						<p className={styles.error_message}>Password is required</p>
+					)}
 				</div>
 				<Button buttonText='Login' data-testid='login_button' />
 			</form>

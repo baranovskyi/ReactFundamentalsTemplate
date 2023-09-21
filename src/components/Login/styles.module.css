@@ -14,5 +14,11 @@
 }
 
 .form_control {
+  display: flex;
+  flex-direction: column;
+}
 
+.error_message {
+  margin: 0;
+  color: red;
 }

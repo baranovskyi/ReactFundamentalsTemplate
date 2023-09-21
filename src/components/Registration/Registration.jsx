@@ -56,7 +56,7 @@ export const Registration = () => {
 			</form>
 			<p>
 				If you have an account you can&nbsp;
-				<Link to='/login'>Login</Link>
+				<Link to='/login'>Register</Link>
 			</p>
 		</div>
 	);
