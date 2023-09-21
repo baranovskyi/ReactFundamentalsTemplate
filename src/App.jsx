@@ -10,7 +10,7 @@ import {
 } from './components';
 
 import styles from './App.module.css';
-import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { mockedAuthorsList, mockedCoursesList } from './constants';
 
 // Task 2 and 3 - wrap your App with redux Provider and BrowserRouter in src/index.js
