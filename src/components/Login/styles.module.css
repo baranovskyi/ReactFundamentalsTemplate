@@ -1,12 +1,18 @@
 .container {
-  max-width: 170px;
+  max-width: 286px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  background-color: #fff;
+  padding: 30px 150px;
 }
 
 .button {
   margin-top: 20px;
   width: 100%;
+}
+
+.form_control {
+
 }

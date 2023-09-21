@@ -1,27 +1,56 @@
-// import React from 'react';
+import React, { useState } from 'react';
 
-// import styles from './styles.module.css';
+import styles from './styles.module.css';
+import { Button, Input } from '../../common';
+import { Link, useNavigate } from 'react-router-dom';
+import { createUser } from '../../services';
 
-// export const Registration = () => {
+export const Registration = () => {
+	const navigate = useNavigate();
 
-// 	// write your code here
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 
-// 	return (
-// 		<div className={styles.container}>
-// 			<form onSubmit={handleSubmit}>
-// 				<h1>Registration</h1>
-// 				// reurse Input component for email field
+	const handleSubmit = async (event) => {
+		event.preventDefault();
 
-// 				// reurse Input component for name field
+		const payload = {
+			name,
+			password,
+			email,
+		};
 
-// 				// reurse Input component for password field
+		await createUser(payload).then(() => {
+			navigate('login', { replace: true });
+		});
+	};
 
-// 				// reurse Button component for 'Login' button
-// 			</form>
-// 			<p>
-// 				If you have an account you can&nbsp;
-// 				<a>log in</a>
-// 			</p>
-// 		</div>
-// 	);
-// };
+	return (
+		<div className={styles.container}>
+			<form onSubmit={handleSubmit}>
+				<h1>Registration</h1>
+				<Input
+					placeholderText='Input text'
+					labelText='Name'
+					onChange={(event) => setName(event.target.value)}
+				/>
+				<Input
+					placeholderText='Input text'
+					labelText='Email'
+					onChange={(event) => setEmail(event.target.value)}
+				/>
+				<Input
+					placeholderText='Input text'
+					labelText='Password'
+					onChange={(event) => setPassword(event.target.value)}
+				/>
+				<Button buttonText='Login' data-testid='register_button' />
+			</form>
+			<p>
+				If you have an account you can&nbsp;
+				<Link to='/login'>Login</Link>
+			</p>
+		</div>
+	);
+};

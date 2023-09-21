@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './styles.module.css';
 
 export const Input = ({
 	placeholderText,
@@ -6,12 +7,14 @@ export const Input = ({
 	onChange,
 	'data-testid': dataTestId,
 }) => (
-	<label>
-		{labelText}
-		<input
-			onChange={onChange}
-			placeholder={placeholderText}
-			data-testid={dataTestId}
-		/>
-	</label>
+	<div className={styles.container}>
+		<label>
+			{labelText}
+			<input
+				onChange={onChange}
+				placeholder={placeholderText}
+				data-testid={dataTestId}
+			/>
+		</label>
+	</div>
 );
