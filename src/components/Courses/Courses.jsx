@@ -5,11 +5,9 @@ import { CourseCard } from './components';
 
 import styles from './styles.module.css';
 import { EmptyCourseList } from './components/EmptyCourseList';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const Courses = ({ coursesList, authorsList }) => {
-	const navigate = useNavigate();
-
 	return coursesList.length ? (
 		<div>
 			<div className={styles.courses_button_wrapper}>

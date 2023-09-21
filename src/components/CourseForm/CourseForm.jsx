@@ -39,10 +39,11 @@ export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
 						<AuthorItem authorName={author.name} key={author.id} />
 					))}
 					<strong>Course authors</strong>
-					// use 'map' to display course's autors
+					{/* use 'map' to display course's autors*/}
 					{/* <p data-testid="selectedAuthor"}>{author.name}</p> */}
-					<p className={styles.notification}>List is empty</p> // display this
-					paragraph if there are no authors in the course
+					<p className={styles.notification}>List is empty</p>{' '}
+					{/* display this
+					paragraph if there are no authors in the course*/}
 				</div>
 			</div>
 			<Button buttonText='Save course' data-testid='createCourseButton' />
