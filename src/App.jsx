@@ -33,7 +33,7 @@ function App() {
 		getAuthors().then(({ result }) => {
 			dispatch(setAuthors(result));
 		});
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<>
