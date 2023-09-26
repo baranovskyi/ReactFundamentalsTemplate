@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 export const CourseCard = ({ course, authorsList }) => {
 	const dispatch = useDispatch();
 	const authorsNames = course.authors
-		.map((id) => authorsList.find((author) => author.id === id))
+		.map((id) => authorsList?.find((author) => author.id === id))
 		.filter((author) => author)
 		.map((author) => author.name);
 
