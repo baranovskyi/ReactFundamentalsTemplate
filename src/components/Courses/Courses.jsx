@@ -1,8 +1,6 @@
 import React from 'react';
-
 import { Button } from '../../common';
 import { CourseCard } from './components';
-
 import styles from './styles.module.css';
 import { EmptyCourseList } from './components/EmptyCourseList';
 import { Link } from 'react-router-dom';

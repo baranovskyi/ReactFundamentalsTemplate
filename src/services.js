@@ -25,11 +25,15 @@ export const login = async (data) => {
 };
 
 export const getCourses = async () => {
-	// write your code here
+	const response = await fetch(`${apiUrl}/courses/all`);
+
+	return await response.json();
 };
 
 export const getAuthors = async () => {
-	// write your code here
+	const response = await fetch(`${apiUrl}/authors/all`);
+
+	return await response.json();
 };
 
 export const getCurrentUser = async () => {

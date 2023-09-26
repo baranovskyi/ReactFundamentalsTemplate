@@ -5,13 +5,15 @@ import { formatCreationDate, getCourseDuration } from '../../../../helpers';
 
 import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
+import { deleteCourse } from '../../../../store/slices/coursesSlice';
+import { useDispatch } from 'react-redux';
 
 export const CourseCard = ({ course, authorsList }) => {
-	const authorsNames = course.authors.map((id) => {
-		const author = authorsList.find((author) => author.id === id);
-
-		return author.name;
-	});
+	const dispatch = useDispatch();
+	const authorsNames = course.authors
+		.map((id) => authorsList.find((author) => author.id === id))
+		.filter((author) => author)
+		.map((author) => author.name);
 
 	return (
 		<div className={styles.cardContainer} data-testid='courseCard'>
@@ -36,7 +38,11 @@ export const CourseCard = ({ course, authorsList }) => {
 					<Link to={`/courses/${course.id}`}>
 						<Button buttonText='Show course' />
 					</Link>
-					<Button buttonText='Delete' data-testid='deleteCourse' />
+					<Button
+						buttonText='Delete'
+						data-testid='deleteCourse'
+						handleClick={() => dispatch(deleteCourse(course.id))}
+					/>
 					<Button buttonText='Update' data-testid='updateCourse' />
 				</div>
 			</div>

@@ -6,9 +6,14 @@ export const coursesSlice = createSlice({
 	name: 'courses',
 	initialState,
 	reducers: {
-		// setCourses:
-		// saveCourse:
-		// deleteCourse:
+		setCourses: (state, { payload }) => {
+			return [...state, ...payload];
+		},
+		deleteCourse: (state, { payload }) => {
+			console.log(payload);
+
+			return state.filter((course) => course.id !== payload);
+		},
 		// updateCourse:
 	},
 });
