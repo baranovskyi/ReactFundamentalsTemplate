@@ -4,21 +4,17 @@ import { Button } from '../../common';
 import { formatCreationDate, getCourseDuration } from '../../helpers';
 
 import styles from './styles.module.css';
+import { Link, useParams } from 'react-router-dom';
 
-export const CourseInfo = ({
-	coursesList,
-	authorsList,
-	onBack,
-	showCourseId,
-}) => {
-	const course = coursesList.find(({ id }) => id === showCourseId);
+export const CourseInfo = ({ coursesList, authorsList }) => {
+	const { courseId } = useParams();
+	const course = coursesList.find(({ id }) => id === courseId);
 	const authors = course.authors.map((id) => {
 		return authorsList.find((author) => author.id === id);
 	});
 
 	return (
 		<div data-testid='courseInfo'>
-			{/* Module 2: use 'react-router-dom' 'Link' component for button 'Back' */}
 			<h1>{course.title}</h1>
 			<div className={styles.courseInfo}>
 				<p className={styles.description}>
@@ -49,7 +45,9 @@ export const CourseInfo = ({
 				</div>
 			</div>
 			<div className={styles.button_wrapper}>
-				<Button buttonText='Back' handleClick={onBack} />
+				<Link to='/courses'>
+					<Button buttonText='Back' />
+				</Link>
 			</div>
 		</div>
 	);
