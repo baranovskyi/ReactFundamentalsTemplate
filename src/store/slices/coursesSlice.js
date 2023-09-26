@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = [];
 
@@ -10,8 +10,6 @@ export const coursesSlice = createSlice({
 			return [...state, ...payload];
 		},
 		deleteCourse: (state, { payload }) => {
-			console.log(payload);
-
 			return state.filter((course) => course.id !== payload);
 		},
 		// updateCourse:
