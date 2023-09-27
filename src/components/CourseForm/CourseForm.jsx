@@ -3,8 +3,11 @@ import React from 'react';
 import styles from './styles.module.css';
 import { Button, Input } from '../../common';
 import { AuthorItem, CreateAuthor } from './components';
+import { getAuthorsList } from '../../store/selectors';
+import { useSelector } from 'react-redux';
 
-export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
+export const CourseForm = ({ createCourse, createAuthor }) => {
+	const authorsList = useSelector(getAuthorsList);
 	const handleSubmit = async () => {};
 
 	return (

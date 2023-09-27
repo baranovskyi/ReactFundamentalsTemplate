@@ -33,11 +33,9 @@ export const Login = () => {
 
 		if (email && password) {
 			await login(payload).then((res) => {
-				if (res.successful) {
-					dispatch(setUserData({ ...res.user, token: res.result }));
-					localStorage.setItem('token', res.result);
-					navigate('/courses', { replace: true });
-				}
+				dispatch(setUserData({ ...res.user, token: res.result }));
+				localStorage.setItem('token', res.result);
+				navigate('/courses', { replace: true });
 			});
 		}
 	};

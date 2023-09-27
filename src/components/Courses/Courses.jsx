@@ -4,8 +4,12 @@ import { CourseCard } from './components';
 import styles from './styles.module.css';
 import { EmptyCourseList } from './components/EmptyCourseList';
 import { Link } from 'react-router-dom';
+import { getCoursesList } from '../../store/selectors';
+import { useSelector } from 'react-redux';
 
-export const Courses = ({ coursesList, authorsList }) => {
+export const Courses = () => {
+	const coursesList = useSelector(getCoursesList);
+
 	return coursesList.length ? (
 		<div>
 			<div className={styles.courses_button_wrapper}>
@@ -14,7 +18,7 @@ export const Courses = ({ coursesList, authorsList }) => {
 				</Link>
 			</div>
 			{coursesList.map((course) => (
-				<CourseCard authorsList={authorsList} course={course} key={course.id} />
+				<CourseCard course={course} key={course.id} />
 			))}
 		</div>
 	) : (

@@ -12,8 +12,7 @@ import {
 import styles from './App.module.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { mockedAuthorsList } from './constants';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAuthorsList, getCoursesList } from './store/selectors';
+import { useDispatch } from 'react-redux';
 import { getAuthors, getCourses } from './services';
 import { setCourses } from './store/slices/coursesSlice';
 import { setAuthors } from './store/slices/authorsSlice';
@@ -22,8 +21,6 @@ function App() {
 	const token = localStorage.getItem('token');
 	const defaultPage = token ? 'courses' : 'login';
 	const dispatch = useDispatch();
-	const coursesList = useSelector(getCoursesList);
-	const authorsList = useSelector(getAuthorsList);
 
 	useEffect(() => {
 		getCourses().then(({ result }) => {
@@ -45,18 +42,8 @@ function App() {
 					<Route path='/' element={<Navigate to={defaultPage} />} />
 					<Route path='login' element={<Login />} />
 					<Route path='registration' element={<Registration />} />
-					<Route
-						path='courses'
-						element={
-							<Courses coursesList={coursesList} authorsList={authorsList} />
-						}
-					></Route>
-					<Route
-						path='courses/:courseId'
-						element={
-							<CourseInfo coursesList={coursesList} authorsList={authorsList} />
-						}
-					/>
+					<Route path='courses' element={<Courses />}></Route>
+					<Route path='courses/:courseId' element={<CourseInfo />} />
 					<Route
 						path='courses/add'
 						element={<CourseForm authorsList={mockedAuthorsList} />}

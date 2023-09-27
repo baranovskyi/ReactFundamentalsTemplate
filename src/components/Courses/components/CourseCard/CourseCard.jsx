@@ -6,12 +6,14 @@ import { formatCreationDate, getCourseDuration } from '../../../../helpers';
 import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
 import { deleteCourse } from '../../../../store/slices/coursesSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAuthorsList } from '../../../../store/selectors';
 
-export const CourseCard = ({ course, authorsList }) => {
+export const CourseCard = ({ course }) => {
 	const dispatch = useDispatch();
+	const authorsList = useSelector(getAuthorsList);
 	const authorsNames = course.authors
-		.map((id) => authorsList?.find((author) => author.id === id))
+		.map((id) => authorsList.find((author) => author.id === id))
 		.filter((author) => author)
 		.map((author) => author.name);
 
