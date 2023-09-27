@@ -1,0 +1,8 @@
+.wrapper {
+    display: flex;
+    align-items: end;
+}
+
+.wrapper Button {
+    margin-left: 20px
+}

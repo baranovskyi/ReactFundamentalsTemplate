@@ -1,12 +1,14 @@
-.container {}
+.container {
+}
 
 input {
-  display: block;
-  height: 50px;
-  width: 100%;
-  border: 1px solid #CFCFCF;
-  border-radius: 4px;
+    display: block;
+    height: 30px;
+    width: 100%;
+    border: 1px solid #CFCFCF;
+    border-radius: 4px;
 }
+
 label {
-  font-weight: bold;
+    font-weight: bold;
 }
