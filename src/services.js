@@ -25,13 +25,19 @@ export const login = async (data) => {
 };
 
 export const getCourses = async () => {
-	const response = await fetch(`${apiUrl}/courses/all`);
+	const response = await fetch(`${apiUrl}/courses/all`, {
+		method: 'GET',
+		headers: { 'Content-Type': 'application/json' },
+	});
 
 	return await response.json();
 };
 
 export const getAuthors = async () => {
-	const response = await fetch(`${apiUrl}/authors/all`);
+	const response = await fetch(`${apiUrl}/authors/all`, {
+		method: 'GET',
+		headers: { 'Content-Type': 'application/json' },
+	});
 
 	return await response.json();
 };
