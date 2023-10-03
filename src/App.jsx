@@ -14,8 +14,9 @@ import styles from './App.module.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { mockedAuthorsList } from './constants';
 import { useDispatch } from 'react-redux';
-import { getAuthors, getCourses, getCurrentUser } from './services';
+import { getAuthors, getCurrentUser } from './services';
 import store from './store';
+import { getCoursesThunk } from './store/thunks/coursesThunk';
 
 function App() {
 	const token = localStorage.getItem('token');
@@ -23,7 +24,7 @@ function App() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		store.dispatch(getCourses());
+		store.dispatch(getCoursesThunk());
 		store.dispatch(getAuthors());
 		store.dispatch(getCurrentUser());
 	}, [dispatch]);

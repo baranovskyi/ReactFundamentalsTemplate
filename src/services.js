@@ -39,16 +39,13 @@ export const login = async (data) => {
 	return await response.json();
 };
 
-export const getCourses = () => {
-	return async (dispatch) => {
-		const response = await fetch(`${apiUrl}/courses/all`, {
-			method: 'GET',
-			headers: { 'Content-Type': 'application/json' },
-		});
-		const { result } = await response.json();
+export const getCourses = async () => {
+	const response = await fetch(`${apiUrl}/courses/all`, {
+		method: 'GET',
+		headers: { 'Content-Type': 'application/json' },
+	});
 
-		dispatch(setCourses(result));
-	};
+	return await response.json();
 };
 
 export const getAuthors = () => {
