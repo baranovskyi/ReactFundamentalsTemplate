@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { generateRandomUUID } from './authorsSlice';
 
 const initialState = [];
 
@@ -6,9 +7,27 @@ export const coursesSlice = createSlice({
 	name: 'courses',
 	initialState,
 	reducers: {
-		// setCourses:
-		// saveCourse:
-		// deleteCourse:
+		setCourses: (state, { payload }) => {
+			return [...state, ...payload];
+		},
+		deleteCourse: (state, { payload }) => {
+			return state.filter((course) => course.id !== payload);
+		},
+		saveCourse: (state, { payload }) => {
+			return [
+				...state,
+				{
+					...payload,
+					id: generateRandomUUID(),
+					creationDate: new Date().toLocaleDateString('en-US', {
+						month: 'numeric',
+						day: 'numeric',
+						year: 'numeric',
+					}),
+					authors: [],
+				},
+			];
+		},
 		// updateCourse:
 	},
 });

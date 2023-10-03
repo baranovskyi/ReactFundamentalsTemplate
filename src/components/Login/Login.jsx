@@ -4,8 +4,11 @@ import styles from './styles.module.css';
 import { Button, Input } from '../../common';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../services';
+import { useDispatch } from 'react-redux';
+import { setUserData } from '../../store/slices/userSlice';
 
 export const Login = () => {
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -30,11 +33,9 @@ export const Login = () => {
 
 		if (email && password) {
 			await login(payload).then((res) => {
-				if (res.successful) {
-					localStorage.setItem('token', res.result);
-					localStorage.setItem('userName', res.user.name);
-					navigate('courses', { replace: true });
-				}
+				dispatch(setUserData({ ...res.user, token: res.result }));
+				localStorage.setItem('token', res.result);
+				navigate('/courses', { replace: true });
 			});
 		}
 	};

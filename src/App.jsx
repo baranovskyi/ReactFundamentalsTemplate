@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import {
 	CourseForm,
@@ -11,13 +11,26 @@ import {
 
 import styles from './App.module.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { mockedAuthorsList, mockedCoursesList } from './constants';
-
-// Task 2 and 3 - wrap your App with redux Provider and BrowserRouter in src/index.js
+import { mockedAuthorsList } from './constants';
+import { useDispatch } from 'react-redux';
+import { getAuthors, getCourses } from './services';
+import { setCourses } from './store/slices/coursesSlice';
+import { setAuthors } from './store/slices/authorsSlice';
 
 function App() {
 	const token = localStorage.getItem('token');
 	const defaultPage = token ? 'courses' : 'login';
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		getCourses().then(({ result }) => {
+			dispatch(setCourses(result));
+		});
+
+		getAuthors().then(({ result }) => {
+			dispatch(setAuthors(result));
+		});
+	}, [dispatch]);
 
 	return (
 		<>
@@ -29,24 +42,8 @@ function App() {
 					<Route path='/' element={<Navigate to={defaultPage} />} />
 					<Route path='login' element={<Login />} />
 					<Route path='registration' element={<Registration />} />
-					<Route
-						path='courses'
-						element={
-							<Courses
-								coursesList={mockedCoursesList}
-								authorsList={mockedAuthorsList}
-							/>
-						}
-					></Route>
-					<Route
-						path='courses/:courseId'
-						element={
-							<CourseInfo
-								coursesList={mockedCoursesList}
-								authorsList={mockedAuthorsList}
-							/>
-						}
-					/>
+					<Route path='courses' element={<Courses />}></Route>
+					<Route path='courses/:courseId' element={<CourseInfo />} />
 					<Route
 						path='courses/add'
 						element={<CourseForm authorsList={mockedAuthorsList} />}

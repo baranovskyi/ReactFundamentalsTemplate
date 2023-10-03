@@ -3,23 +3,42 @@ import React from 'react';
 import styles from './styles.module.css';
 import { Button, Input } from '../../common';
 import { AuthorItem, CreateAuthor } from './components';
+import { getAuthorsList } from '../../store/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { saveCourse } from '../../store/slices/coursesSlice';
+import { useNavigate } from 'react-router-dom';
 
-export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
-	const handleSubmit = async () => {};
+export const CourseForm = () => {
+	const navigate = useNavigate();
+	const [title, setTitle] = React.useState('');
+	const [description, setDescription] = React.useState('');
+	const [duration, setDuration] = React.useState('');
+	const dispatch = useDispatch();
+	const authorsList = useSelector(getAuthorsList);
+	const handleCreateCourse = (event) => {
+		event.preventDefault();
+
+		dispatch(saveCourse({ title, description, duration }));
+		navigate('/courses', { replace: true });
+	};
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={handleCreateCourse}>
 			<div>
 				<Input
 					labelText='Title'
 					placeholderText='Input text'
 					data-testid='titleInput'
+					onChange={(e) => setTitle(e.target.value)}
 				/>
 			</div>
 
 			<label>
 				Description
-				<textarea data-testid='descriptionTextArea' />
+				<textarea
+					data-testid='descriptionTextArea'
+					onChange={(e) => setDescription(e.target.value)}
+				/>
 			</label>
 
 			<div className={styles.infoWrapper}>
@@ -29,6 +48,7 @@ export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
 						labelText='Duration'
 						placeholderText='Input text'
 						data-testid='durationInput'
+						onChange={(e) => setDuration(e.target.value)}
 					/>
 					<CreateAuthor />
 				</div>
@@ -46,11 +66,7 @@ export const CourseForm = ({ authorsList, createCourse, createAuthor }) => {
 					paragraph if there are no authors in the course*/}
 				</div>
 			</div>
-			<Button
-				buttonText='Save course'
-				data-testid='createCourseButton'
-				handleClick={createCourse}
-			/>
+			<Button buttonText='Save course' data-testid='createCourseButton' />
 		</form>
 	);
 };

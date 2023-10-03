@@ -5,9 +5,13 @@ import { formatCreationDate, getCourseDuration } from '../../helpers';
 
 import styles from './styles.module.css';
 import { Link, useParams } from 'react-router-dom';
+import { getAuthorsList, getCoursesList } from '../../store/selectors';
+import { useSelector } from 'react-redux';
 
-export const CourseInfo = ({ coursesList, authorsList }) => {
+export const CourseInfo = () => {
 	const { courseId } = useParams();
+	const coursesList = useSelector(getCoursesList);
+	const authorsList = useSelector(getAuthorsList);
 	const course = coursesList.find(({ id }) => id === courseId);
 	const authors = course.authors.map((id) => {
 		return authorsList.find((author) => author.id === id);
