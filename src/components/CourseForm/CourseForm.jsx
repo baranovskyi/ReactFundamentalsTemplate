@@ -6,8 +6,8 @@ import { AuthorItem, CreateAuthor } from './components';
 import { getAuthorsList } from '../../store/selectors';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { createCourse } from '../../services';
 import store from '../../store';
+import { createCourseThunk } from '../../store/thunks/coursesThunk';
 
 export const CourseForm = () => {
 	const navigate = useNavigate();
@@ -18,7 +18,9 @@ export const CourseForm = () => {
 	const handleCreateCourse = (event) => {
 		event.preventDefault();
 
-		store.dispatch(createCourse({ title, description, duration, authors: [] }));
+		store.dispatch(
+			createCourseThunk({ title, description, duration, authors: [] })
+		);
 		navigate('/courses', { replace: true });
 	};
 

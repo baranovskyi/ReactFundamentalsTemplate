@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getUserInfo } from '../../store/selectors';
 import store from '../../store';
-import { logout } from '../../services';
+import { logoutThunk } from '../../store/thunks/userThunk';
 
 export const Header = () => {
 	const userInfo = useSelector(getUserInfo);
@@ -16,7 +16,7 @@ export const Header = () => {
 	const isUserLoggedIn = localStorage.getItem('token');
 
 	const logOut = () => {
-		store.dispatch(logout());
+		store.dispatch(logoutThunk());
 		localStorage.removeItem('token');
 		navigate('/');
 	};

@@ -14,9 +14,10 @@ import styles from './App.module.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { mockedAuthorsList } from './constants';
 import { useDispatch } from 'react-redux';
-import { getAuthors, getCurrentUser } from './services';
 import store from './store';
 import { getCoursesThunk } from './store/thunks/coursesThunk';
+import { getUserThunk } from './store/thunks/userThunk';
+import { getAuthorsThunk } from './store/thunks/authorsThunk';
 
 function App() {
 	const token = localStorage.getItem('token');
@@ -25,8 +26,8 @@ function App() {
 
 	useEffect(() => {
 		store.dispatch(getCoursesThunk());
-		store.dispatch(getAuthors());
-		store.dispatch(getCurrentUser());
+		store.dispatch(getAuthorsThunk());
+		store.dispatch(getUserThunk());
 	}, [dispatch]);
 
 	return (

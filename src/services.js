@@ -1,7 +1,3 @@
-import { deleteCourse, setCourses } from './store/slices/coursesSlice';
-import { setAuthors } from './store/slices/authorsSlice';
-import { removeUserData, setUserData } from './store/slices/userSlice';
-
 const apiUrl = 'http://localhost:4000';
 const token = localStorage.getItem('token');
 
@@ -48,79 +44,62 @@ export const getCourses = async () => {
 	return await response.json();
 };
 
-export const getAuthors = () => {
-	return async (dispatch) => {
-		const response = await fetch(`${apiUrl}/authors/all`, {
-			method: 'GET',
-			headers: { 'Content-Type': 'application/json' },
-		});
-		const { result } = await response.json();
+export const getAuthors = async () => {
+	const response = await fetch(`${apiUrl}/authors/all`, {
+		method: 'GET',
+		headers: { 'Content-Type': 'application/json' },
+	});
 
-		dispatch(setAuthors(result));
-	};
+	return await response.json();
 };
 
-export const getCurrentUser = () => {
-	return async (dispatch) => {
-		const response = await fetch(
-			`${apiUrl}/users/me`,
-			getParams({}, { Authorization: token })
-		);
-		const { result } = await response.json();
-
-		dispatch(setUserData({ ...result, token }));
-	};
+export const getCurrentUser = async () => {
+	const response = await fetch(
+		`${apiUrl}/users/me`,
+		getParams({}, { Authorization: token })
+	);
+	return await response.json();
 };
 
-export const updateCourse = async () => {
-	// write your code here
+export const updateCourse = async (course, courseId) => {
+	const response = await fetch(`${apiUrl}/courses/${courseId}`, {
+		method: 'PUT',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(course),
+	});
+
+	return await response.json();
 };
 
-export const logout = () => {
-	return async (dispatch) => {
-		await fetch(`${apiUrl}/logout`, {
-			method: 'DELETE',
-			headers: { Authorization: token },
-		});
-
-		dispatch(removeUserData());
-	};
+export const logout = async () => {
+	return await fetch(`${apiUrl}/logout`, {
+		method: 'DELETE',
+		headers: { Authorization: token },
+	});
 };
 
-export const deleteCourseThunk = (courseId) => {
-	return async (dispatch) => {
-		await fetch(`${apiUrl}/courses/${courseId}`, {
-			method: 'DELETE',
-			headers: { Authorization: token },
-		});
-
-		dispatch(deleteCourse(courseId));
-	};
+export const deleteCourse = async (courseId) => {
+	return await fetch(`${apiUrl}/courses/${courseId}`, {
+		method: 'DELETE',
+		headers: { Authorization: token },
+	});
 };
 
-export const createCourse = (course) => {
-	return async function (dispatch) {
-		const response = await fetch(`${apiUrl}/courses/add`, {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(course),
-		});
+export const createCourse = async (course) => {
+	const response = await fetch(`${apiUrl}/courses/add`, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(course),
+	});
 
-		const { result } = await response.json();
-
-		dispatch(setCourses(result));
-	};
+	return await response.json();
 };
 
-export const createAuthor = (name) => {
-	return async function (dispatch) {
-		const response = await fetch(
-			`${apiUrl}/authors/add`,
-			postParams({ body: JSON.stringify({ name }) })
-		);
+export const createAuthor = async (name) => {
+	const response = await fetch(
+		`${apiUrl}/authors/add`,
+		postParams({ body: JSON.stringify({ name }) })
+	);
 
-		const { result } = await response.json();
-
-		dispatch(setAuthors(result));
-	};
+	return await response.json();
 };

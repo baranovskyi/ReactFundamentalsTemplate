@@ -2,13 +2,13 @@ import React from 'react';
 import { Button, Input } from '../../../../common';
 import styles from './styles.module.css';
 import store from '../../../../store';
-import { createAuthor } from '../../../../services';
+import { createAuthorThunk } from '../../../../store/thunks/authorsThunk';
 
 export const CreateAuthor = ({ onCreateAuthor }) => {
 	const [authorName, setAuthorName] = React.useState('');
 	const handleCreateAuthor = (event) => {
 		event.preventDefault();
-		store.dispatch(createAuthor(authorName));
+		store.dispatch(createAuthorThunk(authorName));
 	};
 
 	return (

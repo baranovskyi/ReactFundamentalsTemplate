@@ -2,12 +2,12 @@ import React from 'react';
 
 import { Button } from '../../../../common';
 import { formatCreationDate, getCourseDuration } from '../../../../helpers';
-import { deleteCourseThunk } from '../../../../services';
 import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getAuthorsList } from '../../../../store/selectors';
 import store from '../../../../store';
+import { deleteCourseThunk } from '../../../../store/thunks/coursesThunk';
 
 export const CourseCard = ({ course }) => {
 	const authorsList = useSelector(getAuthorsList);
