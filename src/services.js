@@ -61,7 +61,7 @@ export const getCurrentUser = async () => {
 	return await response.json();
 };
 
-export const updateCourse = async (course, courseId) => {
+export const updateCourseRequest = async (course, courseId) => {
 	const response = await fetch(`${apiUrl}/courses/${courseId}`, {
 		method: 'PUT',
 		headers: { 'Content-Type': 'application/json' },

@@ -1,11 +1,11 @@
 import { createAuthor, getAuthors } from '../../services';
-import { setAuthors } from '../slices/authorsSlice';
+import { saveAuthor, setAuthors } from '../slices/authorsSlice';
 
 export const createAuthorThunk = (name) => {
 	return async (dispatch) => {
 		const response = await createAuthor(name);
 
-		dispatch(setAuthors(response.result));
+		dispatch(saveAuthor(response.result));
 	};
 };
 

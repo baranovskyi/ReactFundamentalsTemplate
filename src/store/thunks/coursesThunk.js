@@ -1,24 +1,24 @@
-import { setCourses } from '../slices/coursesSlice';
+import { saveCourse, setCourses, updateCourse } from '../slices/coursesSlice';
 import {
 	createCourse,
 	deleteCourse,
 	getCourses,
-	updateCourse,
+	updateCourseRequest,
 } from '../../services';
 
 export const updateCourseThunk = (course, courseId) => {
 	return async (dispatch) => {
-		const response = await updateCourse(course, courseId);
+		const response = await updateCourseRequest(course, courseId);
 
-		dispatch(setCourses(response.result));
+		dispatch(updateCourse(response.result));
 	};
 };
 
 export const deleteCourseThunk = (courseId) => {
 	return async (dispatch) => {
-		const response = await deleteCourse(courseId);
+		await deleteCourse(courseId);
 
-		dispatch(setCourses(response.result));
+		dispatch(deleteCourse(courseId));
 	};
 };
 
@@ -26,7 +26,7 @@ export const createCourseThunk = (course) => {
 	return async (dispatch) => {
 		const response = await createCourse(course);
 
-		dispatch(setCourses(response.result));
+		dispatch(saveCourse(response.result));
 	};
 };
 
