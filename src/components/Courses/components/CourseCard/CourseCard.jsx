@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button } from '../../../../common';
 import { formatCreationDate, getCourseDuration } from '../../../../helpers';
-import { deleteCourse } from '../../../../services';
+import { deleteCourseThunk } from '../../../../services';
 import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -20,7 +20,7 @@ export const CourseCard = ({ course }) => {
 	const handleDeleteCourse = (event) => {
 		event.preventDefault();
 
-		store.dispatch(deleteCourse(course.id));
+		store.dispatch(deleteCourseThunk(course.id));
 	};
 
 	return (
@@ -47,13 +47,17 @@ export const CourseCard = ({ course }) => {
 						<Button buttonText='Show course' />
 					</Link>
 					{isAdmin && (
-						<Button
-							buttonText='Delete'
-							data-testid='deleteCourse'
-							handleClick={handleDeleteCourse}
-						/>
+						<>
+							<Button
+								buttonText='Delete'
+								data-testid='deleteCourse'
+								handleClick={handleDeleteCourse}
+							/>
+							<Link to={`/courses/update/${course.id}`}>
+								<Button buttonText='Update' data-testid='updateCourse' />
+							</Link>
+						</>
 					)}
-					<Button buttonText='Update' data-testid='updateCourse' />
 				</div>
 			</div>
 		</div>

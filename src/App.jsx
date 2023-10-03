@@ -6,6 +6,7 @@ import {
 	Courses,
 	Header,
 	Login,
+	PrivateRoute,
 	Registration,
 } from './components';
 
@@ -13,7 +14,7 @@ import styles from './App.module.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { mockedAuthorsList } from './constants';
 import { useDispatch } from 'react-redux';
-import { getAuthors, getCourses } from './services';
+import { getAuthors, getCourses, getCurrentUser } from './services';
 import store from './store';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
 	useEffect(() => {
 		store.dispatch(getCourses());
 		store.dispatch(getAuthors());
+		store.dispatch(getCurrentUser());
 	}, [dispatch]);
 
 	return (
@@ -40,7 +42,19 @@ function App() {
 					<Route path='courses/:courseId' element={<CourseInfo />} />
 					<Route
 						path='courses/add'
-						element={<CourseForm authorsList={mockedAuthorsList} />}
+						element={
+							<PrivateRoute>
+								<CourseForm authorsList={mockedAuthorsList} />
+							</PrivateRoute>
+						}
+					/>
+					<Route
+						path='courses/update/:id'
+						element={
+							<PrivateRoute>
+								<CourseForm authorsList={mockedAuthorsList} />
+							</PrivateRoute>
+						}
 					/>
 				</Routes>
 			</div>

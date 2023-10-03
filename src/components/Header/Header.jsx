@@ -16,9 +16,9 @@ export const Header = () => {
 	const isUserLoggedIn = localStorage.getItem('token');
 
 	const logOut = () => {
+		store.dispatch(logout());
 		localStorage.removeItem('token');
 		navigate('/');
-		store.dispatch(logout());
 	};
 
 	return (

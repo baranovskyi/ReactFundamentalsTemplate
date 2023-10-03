@@ -1,4 +1,4 @@
-import { setCourses } from './store/slices/coursesSlice';
+import { deleteCourse, setCourses } from './store/slices/coursesSlice';
 import { setAuthors } from './store/slices/authorsSlice';
 import { removeUserData, setUserData } from './store/slices/userSlice';
 
@@ -41,7 +41,10 @@ export const login = async (data) => {
 
 export const getCourses = () => {
 	return async (dispatch) => {
-		const response = await fetch(`${apiUrl}/courses/all`, getParams());
+		const response = await fetch(`${apiUrl}/courses/all`, {
+			method: 'GET',
+			headers: { 'Content-Type': 'application/json' },
+		});
 		const { result } = await response.json();
 
 		dispatch(setCourses(result));
@@ -50,7 +53,10 @@ export const getCourses = () => {
 
 export const getAuthors = () => {
 	return async (dispatch) => {
-		const response = await fetch(`${apiUrl}/authors/all`, getParams());
+		const response = await fetch(`${apiUrl}/authors/all`, {
+			method: 'GET',
+			headers: { 'Content-Type': 'application/json' },
+		});
 		const { result } = await response.json();
 
 		dispatch(setAuthors(result));
@@ -79,11 +85,12 @@ export const logout = () => {
 			method: 'DELETE',
 			headers: { Authorization: token },
 		});
+
 		dispatch(removeUserData());
 	};
 };
 
-export const deleteCourse = (courseId) => {
+export const deleteCourseThunk = (courseId) => {
 	return async (dispatch) => {
 		await fetch(`${apiUrl}/courses/${courseId}`, {
 			method: 'DELETE',
@@ -94,10 +101,29 @@ export const deleteCourse = (courseId) => {
 	};
 };
 
-export const createCourse = async () => {
-	// write your code here
+export const createCourse = (course) => {
+	return async function (dispatch) {
+		const response = await fetch(`${apiUrl}/courses/add`, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(course),
+		});
+
+		const { result } = await response.json();
+
+		dispatch(setCourses(result));
+	};
 };
 
-export const createAuthor = async () => {
-	// write your code here
+export const createAuthor = (name) => {
+	return async function (dispatch) {
+		const response = await fetch(
+			`${apiUrl}/authors/add`,
+			postParams({ body: JSON.stringify({ name }) })
+		);
+
+		const { result } = await response.json();
+
+		dispatch(setAuthors(result));
+	};
 };

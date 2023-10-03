@@ -4,21 +4,21 @@ import styles from './styles.module.css';
 import { Button, Input } from '../../common';
 import { AuthorItem, CreateAuthor } from './components';
 import { getAuthorsList } from '../../store/selectors';
-import { useDispatch, useSelector } from 'react-redux';
-import { saveCourse } from '../../store/slices/coursesSlice';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { createCourse } from '../../services';
+import store from '../../store';
 
 export const CourseForm = () => {
 	const navigate = useNavigate();
 	const [title, setTitle] = React.useState('');
 	const [description, setDescription] = React.useState('');
 	const [duration, setDuration] = React.useState('');
-	const dispatch = useDispatch();
 	const authorsList = useSelector(getAuthorsList);
 	const handleCreateCourse = (event) => {
 		event.preventDefault();
 
-		dispatch(saveCourse({ title, description, duration }));
+		store.dispatch(createCourse({ title, description, duration, authors: [] }));
 		navigate('/courses', { replace: true });
 	};
 
