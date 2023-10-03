@@ -14,8 +14,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { mockedAuthorsList } from './constants';
 import { useDispatch } from 'react-redux';
 import { getAuthors, getCourses } from './services';
-import { setCourses } from './store/slices/coursesSlice';
-import { setAuthors } from './store/slices/authorsSlice';
+import store from './store';
 
 function App() {
 	const token = localStorage.getItem('token');
@@ -23,13 +22,8 @@ function App() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		getCourses().then(({ result }) => {
-			dispatch(setCourses(result));
-		});
-
-		getAuthors().then(({ result }) => {
-			dispatch(setAuthors(result));
-		});
+		store.dispatch(getCourses());
+		store.dispatch(getAuthors());
 	}, [dispatch]);
 
 	return (
