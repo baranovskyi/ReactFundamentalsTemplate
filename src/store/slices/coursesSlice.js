@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { generateRandomUUID } from './authorsSlice';
 
 const initialState = [];
 
@@ -18,17 +17,21 @@ export const coursesSlice = createSlice({
 				...state,
 				{
 					...payload,
-					id: generateRandomUUID(),
-					creationDate: new Date().toLocaleDateString('en-US', {
-						month: 'numeric',
-						day: 'numeric',
-						year: 'numeric',
-					}),
-					authors: [],
 				},
 			];
 		},
-		// updateCourse:
+		updateCourse: (state, { payload }) => {
+			return state.map((course) => {
+				if (course.id === payload.id) {
+					return {
+						...course,
+						...payload,
+					};
+				}
+
+				return course;
+			});
+		},
 	},
 });
 

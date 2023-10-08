@@ -2,20 +2,26 @@ import React from 'react';
 
 import { Button } from '../../../../common';
 import { formatCreationDate, getCourseDuration } from '../../../../helpers';
-
 import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
-import { deleteCourse } from '../../../../store/slices/coursesSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getAuthorsList } from '../../../../store/selectors';
+import store from '../../../../store';
+import { deleteCourseThunk } from '../../../../store/thunks/coursesThunk';
 
 export const CourseCard = ({ course }) => {
-	const dispatch = useDispatch();
 	const authorsList = useSelector(getAuthorsList);
+	const isAdmin = useSelector((state) => state.user.role === 'admin');
 	const authorsNames = course.authors
 		.map((id) => authorsList.find((author) => author.id === id))
 		.filter((author) => author)
 		.map((author) => author.name);
+
+	const handleDeleteCourse = (event) => {
+		event.preventDefault();
+
+		store.dispatch(deleteCourseThunk(course.id));
+	};
 
 	return (
 		<div className={styles.cardContainer} data-testid='courseCard'>
@@ -40,12 +46,18 @@ export const CourseCard = ({ course }) => {
 					<Link to={`/courses/${course.id}`}>
 						<Button buttonText='Show course' />
 					</Link>
-					<Button
-						buttonText='Delete'
-						data-testid='deleteCourse'
-						handleClick={() => dispatch(deleteCourse(course.id))}
-					/>
-					<Button buttonText='Update' data-testid='updateCourse' />
+					{isAdmin && (
+						<>
+							<Button
+								buttonText='Delete'
+								data-testid='deleteCourse'
+								handleClick={handleDeleteCourse}
+							/>
+							<Link to={`/courses/update/${course.id}`}>
+								<Button buttonText='Update' data-testid='updateCourse' />
+							</Link>
+						</>
+					)}
 				</div>
 			</div>
 		</div>

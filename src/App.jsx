@@ -6,6 +6,7 @@ import {
 	Courses,
 	Header,
 	Login,
+	PrivateRoute,
 	Registration,
 } from './components';
 
@@ -13,9 +14,10 @@ import styles from './App.module.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { mockedAuthorsList } from './constants';
 import { useDispatch } from 'react-redux';
-import { getAuthors, getCourses } from './services';
-import { setCourses } from './store/slices/coursesSlice';
-import { setAuthors } from './store/slices/authorsSlice';
+import store from './store';
+import { getCoursesThunk } from './store/thunks/coursesThunk';
+import { getUserThunk } from './store/thunks/userThunk';
+import { getAuthorsThunk } from './store/thunks/authorsThunk';
 
 function App() {
 	const token = localStorage.getItem('token');
@@ -23,13 +25,9 @@ function App() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		getCourses().then(({ result }) => {
-			dispatch(setCourses(result));
-		});
-
-		getAuthors().then(({ result }) => {
-			dispatch(setAuthors(result));
-		});
+		store.dispatch(getCoursesThunk());
+		store.dispatch(getAuthorsThunk());
+		store.dispatch(getUserThunk());
 	}, [dispatch]);
 
 	return (
@@ -46,7 +44,19 @@ function App() {
 					<Route path='courses/:courseId' element={<CourseInfo />} />
 					<Route
 						path='courses/add'
-						element={<CourseForm authorsList={mockedAuthorsList} />}
+						element={
+							<PrivateRoute>
+								<CourseForm authorsList={mockedAuthorsList} />
+							</PrivateRoute>
+						}
+					/>
+					<Route
+						path='courses/update/:id'
+						element={
+							<PrivateRoute>
+								<CourseForm authorsList={mockedAuthorsList} />
+							</PrivateRoute>
+						}
 					/>
 				</Routes>
 			</div>

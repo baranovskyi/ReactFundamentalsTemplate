@@ -1,15 +1,14 @@
 import React from 'react';
 import { Button, Input } from '../../../../common';
 import styles from './styles.module.css';
-import { useDispatch } from 'react-redux';
-import { saveAuthor } from '../../../../store/slices/authorsSlice';
+import store from '../../../../store';
+import { createAuthorThunk } from '../../../../store/thunks/authorsThunk';
 
 export const CreateAuthor = ({ onCreateAuthor }) => {
 	const [authorName, setAuthorName] = React.useState('');
-	const dispatch = useDispatch();
 	const handleCreateAuthor = (event) => {
 		event.preventDefault();
-		dispatch(saveAuthor(authorName));
+		store.dispatch(createAuthorThunk(authorName));
 	};
 
 	return (

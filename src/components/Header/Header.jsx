@@ -5,21 +5,20 @@ import { Logo } from './components';
 
 import styles from './styles.module.css';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getUserInfo } from '../../store/selectors';
-import { removeUserData } from '../../store/slices/userSlice';
+import store from '../../store';
+import { logoutThunk } from '../../store/thunks/userThunk';
 
 export const Header = () => {
-	const dispatch = useDispatch();
 	const userInfo = useSelector(getUserInfo);
 	const navigate = useNavigate();
 	const isUserLoggedIn = localStorage.getItem('token');
 
 	const logOut = () => {
+		store.dispatch(logoutThunk());
 		localStorage.removeItem('token');
 		navigate('/');
-		dispatch(removeUserData());
-		window.location.reload();
 	};
 
 	return (

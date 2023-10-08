@@ -9,12 +9,12 @@ import { useSelector } from 'react-redux';
 
 export const Courses = () => {
 	const coursesList = useSelector(getCoursesList);
-
+	const isAdmin = useSelector((state) => state.user.role === 'admin');
 	return coursesList.length ? (
 		<div>
 			<div className={styles.courses_button_wrapper}>
 				<Link to='/courses/add'>
-					<Button buttonText='Add new' data-testid='addCourse' />
+					{isAdmin && <Button buttonText='Add new' data-testid='addCourse' />}
 				</Link>
 			</div>
 			{coursesList.map((course) => (
