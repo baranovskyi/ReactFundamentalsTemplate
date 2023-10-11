@@ -55,7 +55,7 @@ export const CourseForm = () => {
 					<CreateAuthor />
 				</div>
 
-				<div className={styles.authorsContainer}>
+				<div data-testid='authors_list' className={styles.authorsContainer}>
 					<strong>Authors</strong>
 					{authorsList.map((author) => (
 						<AuthorItem authorName={author.name} key={author.id} />
