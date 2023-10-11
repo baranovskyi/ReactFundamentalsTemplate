@@ -7,5 +7,6 @@ export const Logo = () => (
 		src='https://cdn.logo.com/hotlink-ok/logo-social.png'
 		className={styles.logo}
 		alt='logo'
+		data-testid='logo'
 	/>
 );
