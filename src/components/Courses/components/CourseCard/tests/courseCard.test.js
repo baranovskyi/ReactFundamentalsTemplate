@@ -52,8 +52,8 @@ describe('CourseCard Component', () => {
 	});
 
 	it('should display authors list', () => {
-		const { getByTestId, debug } = renderedComponent;
-		debug();
+		const { getByTestId } = renderedComponent;
+
 		expect(getByTestId('course_authors')).toBeInTheDocument();
 	});
 
