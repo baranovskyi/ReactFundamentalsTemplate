@@ -47,3 +47,13 @@ export const mockedAuthorsList = [
 		name: 'Valentina Larina',
 	},
 ];
+
+export const initialState = {
+	user: {
+		isAuth: true,
+		name: 'Alex',
+		email: 'test@gmail.com',
+		token: 'token',
+		role: 'admin',
+	},
+};

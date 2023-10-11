@@ -27,20 +27,24 @@ export const CourseCard = ({ course }) => {
 		<div className={styles.cardContainer} data-testid='courseCard'>
 			<div className={styles.cardText}>
 				<h2>{course.title}</h2>
-				<p>{course.description}</p>
+				<p data-testid='course_description'>{course.description}</p>
 			</div>
 			<div className={styles.cardDetails}>
-				<p>
+				<p data-testid='course_authors'>
 					<b>Authors: </b>
 					{authorsNames.join(', ')}
 				</p>
 				<p>
 					<b>Duration: </b>
-					<span>{getCourseDuration(course.duration)}</span>
+					<span data-testid='course_duration'>
+						{getCourseDuration(course.duration)}
+					</span>
 				</p>
 				<p>
 					<b>Created: </b>
-					<span>{formatCreationDate(course.creationDate)}</span>
+					<span data-testid='course_created_date'>
+						{formatCreationDate(course.creationDate)}
+					</span>
 				</p>
 				<div className={styles.buttonGroup}>
 					<Link to={`/courses/${course.id}`}>

@@ -17,7 +17,7 @@ const mockStore = configureStore();
 export function renderWithProviders(
 	component,
 	{
-		preloadedState = initialState,
+		preloadedState = {},
 		store = mockStore(preloadedState),
 		...renderOptions
 	} = {}
