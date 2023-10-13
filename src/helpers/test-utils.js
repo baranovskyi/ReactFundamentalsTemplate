@@ -3,15 +3,6 @@ import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
-const initialState = {
-	user: {
-		isAuth: true,
-		name: 'Alex',
-		email: 'test@gmail.com',
-		token: 'token',
-		role: 'admin',
-	},
-};
 const mockStore = configureStore();
 
 export function renderWithProviders(

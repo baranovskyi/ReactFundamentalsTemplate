@@ -1,7 +1,12 @@
-import { saveCourse, setCourses, updateCourse } from '../slices/coursesSlice';
+import {
+	deleteCourse,
+	saveCourse,
+	setCourses,
+	updateCourse,
+} from '../slices/coursesSlice';
 import {
 	createCourse,
-	deleteCourse,
+	deleteCourseRequest,
 	getCourses,
 	updateCourseRequest,
 } from '../../services';
@@ -16,7 +21,7 @@ export const updateCourseThunk = (course, courseId) => {
 
 export const deleteCourseThunk = (courseId) => {
 	return async (dispatch) => {
-		await deleteCourse(courseId);
+		await deleteCourseRequest(courseId);
 
 		dispatch(deleteCourse(courseId));
 	};

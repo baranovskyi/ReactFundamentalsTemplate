@@ -15,9 +15,9 @@ export const EmptyCourseList = () => {
 					<Button buttonText='Add new course' data-testid='addCourse' />
 				</>
 			) : (
-				<p>
+				<span data-testid='unauthorized_message'>
 					You don't have permissions to create a course. Please log in as ADMIN
-				</p>
+				</span>
 			)}
 		</div>
 	);

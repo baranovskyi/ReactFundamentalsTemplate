@@ -1,7 +1,7 @@
 const apiUrl = 'http://localhost:4000';
 const token = localStorage.getItem('token');
 
-const getParams = (params, headers) => {
+export const getParams = (params, headers) => {
 	return {
 		...params,
 		method: 'GET',
@@ -9,7 +9,7 @@ const getParams = (params, headers) => {
 	};
 };
 
-const postParams = (params) => {
+export const postParams = (params) => {
 	return {
 		...params,
 		method: 'POST',
@@ -78,7 +78,7 @@ export const logout = async () => {
 	});
 };
 
-export const deleteCourse = async (courseId) => {
+export const deleteCourseRequest = async (courseId) => {
 	return await fetch(`${apiUrl}/courses/${courseId}`, {
 		method: 'DELETE',
 		headers: { Authorization: token },

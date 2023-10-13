@@ -23,14 +23,14 @@ export const CourseInfo = () => {
 			<div className={styles.courseInfo}>
 				<p className={styles.description}>
 					<b className={styles.title}>Description</b>
-					<p>{course.description}</p>
+					<p data-testid='course_info_description'>{course.description}</p>
 				</p>
 				<div>
 					<p>
 						<b>ID: </b>
 						{course.id}
 					</p>
-					<p className={styles.description}>
+					<p data-testid='course_info_duration' className={styles.description}>
 						<b>Duration: </b>
 						{getCourseDuration(course.duration)}
 					</p>
@@ -40,7 +40,10 @@ export const CourseInfo = () => {
 					</p>
 					<div className={styles.authorsList}>
 						<b>Authors</b>
-						<ul className={styles.authorsList}>
+						<ul
+							data-testid='course_info_authors'
+							className={styles.authorsList}
+						>
 							{authors.map((author) => (
 								<li key={author.id}>{author.name}</li>
 							))}
